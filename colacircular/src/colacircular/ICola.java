@@ -7,9 +7,8 @@ package colacircular;
 
 
 /**
- *
+ * 
  * @author usuario
- * @
  * 
  */
 public interface ICola {
