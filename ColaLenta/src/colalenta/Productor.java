@@ -10,25 +10,37 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Entidad que introduce elementos en una cola
  *
  * @author alejandro
  */
-public class Productor extends Thread{
+public class Productor extends Thread {
+
     private ColaLenta cola;
-    
+
+    /**
+     * Constructor del productor
+     *
+     * @param cola Cola sobre la que realizara las operaciones
+     */
     public Productor(ColaLenta cola) {
         this.cola = cola;
     }
-    
+
+    /**
+     * Método a ejecutar al lanzar como hilo
+     */
     @Override
     public void run() {
-        Random rnd = new Random(System.currentTimeMillis());
-        
+        Random rnd = new Random(this.getId());
+
         for (int i = 0; i < 10; i++) {
             try {
-                cola.Acola(rnd.nextInt(10));
+                int elemento = rnd.nextInt(10);
+                cola.Acola(elemento);
+                System.out.println("Productor "+this.getId()+". Ha introducido "+elemento);
             } catch (Exception ex) {
-                Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
         }
     }

@@ -9,23 +9,33 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Entidad que extrae elementos de una cola
  *
  * @author alejandro
  */
-public class Consumidor implements Runnable{
+public class Consumidor implements Runnable {
+
     private ColaLenta cola;
-    
+
+    /**
+     * Constructor del consumidor
+     *
+     * @param cola Cola sobre la que realizará las operaciones
+     */
     public Consumidor(ColaLenta cola) {
         this.cola = cola;
     }
-    
+
+    /**
+     * Método a ejecutar al lanzar como hilo
+     */
     @Override
-    public void run () {
+    public void run() {
         for (int i = 0; i < 10; i++) {
             try {
-                cola.Desacola();
+                System.out.println("Consumidor " + Thread.currentThread().getId() + ". Extrae " + cola.Desacola());
             } catch (Exception ex) {
-                Logger.getLogger(Consumidor.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
         }
     }
