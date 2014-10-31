@@ -19,8 +19,10 @@ public class ColaApplet extends Applet {
      */
     @Override
     public void init() {
+        this.setSize(400, 200);
         CanvasCola vista;
-        vista = new CanvasCola();
+        vista = new CanvasCola(this.getWidth(),this.getHeight());
+        add(vista);
     }
 
     // TODO overwrite start(), stop() and destroy() methods
