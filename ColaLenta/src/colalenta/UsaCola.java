@@ -22,12 +22,18 @@ public class UsaCola {
 
         productor1.start();
         productor2.start();
+        
+        try {
+            productor1.join();
+            productor2.join();
+        } catch (InterruptedException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
         consumidor1.start();
         consumidor2.start();
 
         try {
-            productor1.join();
-            productor2.join();
             consumidor1.join();
             consumidor2.join();
         } catch (InterruptedException ex) {
