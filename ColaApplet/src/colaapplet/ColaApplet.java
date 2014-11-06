@@ -6,6 +6,8 @@
 package colaapplet;
 
 import java.applet.Applet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,17 +24,27 @@ public class ColaApplet extends Applet {
      */
     @Override
     public void init() {
-        this.setSize(400, 200);
+        this.setSize(500, 300);
         CanvasCola vista;
-        vista = new CanvasCola(10);
+        vista = new CanvasCola(6);
         add(vista);
+        
+        ColaLenta cola; 
+        cola = new ColaLenta(6, vista);
+        
+        prod = new Productor(cola);
+        cons = new Consumidor(cola);
+
     }
 
     // TODO overwrite start(), stop() and destroy() methods
     
     @Override
     public void start() {
-       
+                
+        prod.start();
+        cons.start();
+        
     }
 
     @Override

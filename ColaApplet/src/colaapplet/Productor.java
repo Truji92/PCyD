@@ -36,7 +36,7 @@ public class Productor extends Thread {
 
         for (int i = 0; i < 10; i++) {
             try {
-                cola.Acola(rnd.nextInt(10));
+                cola.Acola(rnd.nextInt(10)+1);
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }

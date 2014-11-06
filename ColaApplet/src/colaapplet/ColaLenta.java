@@ -39,7 +39,7 @@ public class ColaLenta implements ICola {
     }
 
     @Override
-    public void Acola(Object elemento) throws Exception {
+    public synchronized void Acola(Object elemento) throws Exception {
         Thread.sleep(100);
         if (!colallena()) {
             Thread.sleep(100);
@@ -56,7 +56,7 @@ public class ColaLenta implements ICola {
     }
 
     @Override
-    public Object Desacola() throws Exception {
+    public synchronized Object Desacola() throws Exception {
         Object aux;
         aux = null;
         Thread.sleep(100);
@@ -76,7 +76,7 @@ public class ColaLenta implements ICola {
     }
 
     @Override
-    public Object primero() throws Exception {
+    public synchronized Object primero() throws Exception {
         Object aux;
         aux = null;
 
