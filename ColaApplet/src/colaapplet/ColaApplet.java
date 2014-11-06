@@ -12,6 +12,9 @@ import java.applet.Applet;
  * @author alejandro
  */
 public class ColaApplet extends Applet {
+    
+    private Productor prod;
+    private Consumidor cons;
 
     /**
      * Initialization method that will be called after the applet is loaded into
@@ -21,7 +24,7 @@ public class ColaApplet extends Applet {
     public void init() {
         this.setSize(400, 200);
         CanvasCola vista;
-        vista = new CanvasCola(this.getWidth(),this.getHeight());
+        vista = new CanvasCola(10);
         add(vista);
     }
 

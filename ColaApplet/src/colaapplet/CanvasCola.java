@@ -11,13 +11,20 @@ import java.awt.*;
  *
  * @author alejandro
  */
-public class CanvasCola extends Canvas{
-    
-    public CanvasCola(int width, int height) {
-        setSize(new Dimension(width, height));
+public class CanvasCola extends Canvas {
+
+    private int head;
+    private int tail;
+    private int capacidad;
+    private int numelementos;
+    private Object[] datos;
+    private String mensaje;
+
+    public CanvasCola(int capacidad) {
+        setSize(new Dimension(400, 200));
         this.setBackground(Color.white);
     }
-    
+
     @Override
     public void paint(Graphics g) {
 
@@ -37,14 +44,26 @@ public class CanvasCola extends Canvas{
         og.drawString("Valor de contador 2 --> ", 50, 100);
         g.drawImage(offscreen, 0, 0, null);
     }
-    
-     /* El update original del canvas, borra el canvas y llama a paint. Si queremos 
+
+    /* El update original del canvas, borra el canvas y llama a paint. Si queremos 
      sobreescribir  lo que hay pintado, sobrecargamos update y hacemos que llame 
      paint. Así no borra lo anterior, y no se produce parpadeo
      */
     @Override
     public void update(Graphics g) {
         paint(g);
+    }
+
+    public void avisa(String mensaje) {
+        this.mensaje = mensaje;
+        repaint();
+    }
+
+    public void representa(Object[] buf, int head, int tail, int numele) {
+        this.datos = buf;
+        this.head = head;
+        this.tail = tail;
+        this.numelementos = numele;
     }
 
 }

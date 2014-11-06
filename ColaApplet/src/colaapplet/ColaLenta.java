@@ -18,17 +18,19 @@ public class ColaLenta implements ICola {
     private final int capacidad;
     private int numelementos;
     private Object[] datos;
+    private CanvasCola canvas;
 
     /**
      * Constructor que crea una cola con la capacidad especificada
      *
      * @param capacidad Capacidad maxima de la cola
      */
-    public ColaLenta(int capacidad) {
+    public ColaLenta(int capacidad, CanvasCola canvas) {
         this.capacidad = capacidad;
         datos = new Object[capacidad];
         head = tail = 0;
         numelementos = 0;
+        this.canvas = canvas;
     }
 
     @Override
@@ -47,9 +49,10 @@ public class ColaLenta implements ICola {
             Thread.sleep(100);
             numelementos++;
         } else {
+            canvas.avisa("Cola llena");
             throw new Exception("Fallo al encolar. La cola está llena");
         }
-
+        canvas.representa(datos, head, tail, numelementos);
     }
 
     @Override
@@ -65,9 +68,10 @@ public class ColaLenta implements ICola {
             Thread.sleep(100);
             numelementos--;
         } else {
+            canvas.avisa("Cola vacía");
             throw new Exception("Fallo al desencolar. La cola está vacía");
         }
-
+        canvas.representa(datos, head, tail, numelementos);
         return aux;
     }
 
