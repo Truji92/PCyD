@@ -26,11 +26,12 @@ public class ColaApplet extends Applet {
     public void init() {
         this.setSize(500, 300);
         CanvasCola vista;
-        vista = new CanvasCola(6);
+        int capacidad = 6;
+        vista = new CanvasCola(capacidad);
         add(vista);
         
         ColaLenta cola; 
-        cola = new ColaLenta(6, vista);
+        cola = new ColaLenta(capacidad, vista);
         
         prod = new Productor(cola);
         cons = new Consumidor(cola);
