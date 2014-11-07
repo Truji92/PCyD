@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package colaapplet;
+package practica4;
 
 import java.awt.*;
 
@@ -64,14 +64,12 @@ public class CanvasCola extends Canvas {
         if (mensaje != null && mensaje.equalsIgnoreCase("cola llena")) {
             og.setColor(Color.red);
             og.drawString("Cola llena", 10,30);
-            mensaje = null;
             og.setColor(Color.black);
         } else og.drawString("Cola llena", 10,30);  
         
         if (mensaje != null && mensaje.equalsIgnoreCase("cola vacía")) { 
            og.setColor(Color.red);
             og.drawString("Cola vacía", 200, 30);
-            mensaje = null;
             og.setColor(Color.black);
         } else og.drawString("Cola vacía", 200, 30);
         
@@ -97,6 +95,7 @@ public class CanvasCola extends Canvas {
         this.head = head;
         this.tail = tail;
         this.numelementos = numele;
+        this.mensaje = null;
         repaint();
     }
 
