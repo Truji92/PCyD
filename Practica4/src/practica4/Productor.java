@@ -34,11 +34,13 @@ public class Productor extends Thread {
     public void run() {
         Random rnd = new Random(this.getId());
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 15; i++) {
             try {
+                sleep(rnd.nextInt(3)*1000+1000);
                 cola.Acola(rnd.nextInt(10)+1);
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
+                return;
             }
         }
     }

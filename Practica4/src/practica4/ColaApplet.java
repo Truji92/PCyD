@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class ColaApplet extends Applet {
     
-    private Productor prod;
+    private Productor prod1, prod2, prod3, prod4;
     private Consumidor cons;
 
     /**
@@ -33,7 +33,10 @@ public class ColaApplet extends Applet {
         ColaLenta cola; 
         cola = new ColaLenta(capacidad, vista);
         
-        prod = new Productor(cola);
+        prod1 = new Productor(cola);
+        prod2 = new Productor(cola);
+        prod3 = new Productor(cola);
+        prod4 = new Productor(cola);
         cons = new Consumidor(cola);
 
     }
@@ -43,7 +46,10 @@ public class ColaApplet extends Applet {
     @Override
     public void start() {
                 
-        prod.start();
+        prod1.start();
+        prod2.start();
+        prod3.start();
+        prod4.start();
         cons.start();
         
     }

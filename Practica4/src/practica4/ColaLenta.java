@@ -40,36 +40,52 @@ public class ColaLenta implements ICola {
 
     @Override
     public synchronized void Acola(Object elemento) throws Exception {
+        int intentos = 0;
         Thread.sleep(100);
-        if (!colallena()) {
+        while (colallena() && intentos < 3) {
+            System.out.println("El hilo (productor) " + Thread.currentThread().getId() + " espera. Intento: "+ intentos);    
+            wait();
+            intentos++;
+        }
+        if (intentos == 3) {
+            canvas.avisa("Cola llena");
+            throw new Exception("Fallo al encolar. La cola está llena");
+        } else {
             Thread.sleep(100);
             datos[tail] = elemento;
             Thread.sleep(100);
             tail = (tail + 1) % capacidad;
             Thread.sleep(100);
             numelementos++;
-        } else {
-            canvas.avisa("Cola llena");
-            throw new Exception("Fallo al encolar. La cola está llena");
+            System.out.println("El hilo " + Thread.currentThread().getId() + " consigue acolar en el intento "+ intentos);
+            notifyAll();
         }
         canvas.representa(datos, head, tail, numelementos);
     }
 
     @Override
     public synchronized Object Desacola() throws Exception {
+        int intentos = 0;
         Object aux;
         aux = null;
         Thread.sleep(100);
-        if (!colavacia()) {
+        while (colavacia() && intentos < 3) {
+            System.out.println("El hilo (Consumidor) " + Thread.currentThread().getId() + " espera. Intento: "+ intentos);
+            wait();
+            intentos++;
+        }
+        if (intentos == 3) {
+            canvas.avisa("Cola vacía");
+            throw new Exception("Fallo al desencolar. La cola está vacía");
+        } else {
             Thread.sleep(100);
             aux = datos[head];
             Thread.sleep(100);
             head = (head + 1) % capacidad;
             Thread.sleep(100);
             numelementos--;
-        } else {
-            canvas.avisa("Cola vacía");
-            throw new Exception("Fallo al desencolar. La cola está vacía");
+            System.out.println("El hilo " + Thread.currentThread().getId() + " consigue desacolar en el intento "+ intentos);
+            notifyAll();
         }
         canvas.representa(datos, head, tail, numelementos);
         return aux;
