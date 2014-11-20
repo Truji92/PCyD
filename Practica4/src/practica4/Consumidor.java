@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  *
  * @author alejandro
  */
-public class Consumidor extends Thread{
+public class Consumidor extends Thread {
 
     private ColaLenta cola;
 
@@ -35,7 +35,7 @@ public class Consumidor extends Thread{
         Random rnd = new Random(this.getId());
         for (int i = 0; i < 20; i++) {
             try {
-                sleep(rnd.nextInt(3)*1000+1000);
+                sleep(rnd.nextInt(3) * 1000 + 1000);
                 cola.Desacola();
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
