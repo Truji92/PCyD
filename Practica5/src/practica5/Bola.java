@@ -5,6 +5,7 @@
  */
 package practica5;
 
+import com.sun.xml.internal.ws.client.ContentNegotiation;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
@@ -61,9 +62,7 @@ public class Bola {
     }
     
     public boolean EnZonaCompartida(){
-        if (x > CanvasBolas.ANCHO_LATERAL && x < CanvasBolas.ANCHO_LATERAL+CanvasBolas.ANCHO_ZONA_CENTRAL)
-            return true;
-        else return false;
+        return x > CanvasBolas.ANCHO_LATERAL && x < CanvasBolas.ANCHO_LATERAL+CanvasBolas.ANCHO_ZONA_CENTRAL;
     }
     
     public void setX(int x) {

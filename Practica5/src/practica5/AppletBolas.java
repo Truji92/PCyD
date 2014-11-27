@@ -38,7 +38,7 @@ public class AppletBolas extends Applet {
     public CanvasBolas vista;
     
     public static int NUM_LECTORES = 10;
-    public static int NUM_ESCRITORES = 4;
+    public static int NUM_ESCRITORES = 2;
     
     private Bola [] bolas;
     private Escritor [] escritores;
